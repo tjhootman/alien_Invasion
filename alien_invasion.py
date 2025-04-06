@@ -7,6 +7,7 @@ from arsenal import Arsenal
 class AlienInvasion:
 
     def __init__(self):
+        # initial game settings
         pygame.init()
         self.settings = Settings()
 
@@ -54,28 +55,25 @@ class AlienInvasion:
                 self._check_keyup_events(event)
     
     def _check_keyup_events(self, event):
-        if event.key == pygame.K_RIGHT:
+        if event.key == pygame.K_DOWN:
             self.ship.moving_right = False
-        elif event.key == pygame.K_LEFT:
+        elif event.key == pygame.K_UP:
             self.ship.moving_left = False
         
     def _check_keydown_events(self, event):
-        if event.key == pygame.K_RIGHT:
+        if event.key == pygame.K_DOWN: # ship movement down
             self.ship.moving_right = True
-        elif event.key == pygame.K_LEFT:
+        elif event.key == pygame.K_UP: # ship movement up
             self.ship.moving_left = True
-        elif event.key == pygame.K_SPACE:
+        elif event.key == pygame.K_SPACE: # bullet fire event
             if self.ship.fire():
                 self.laser_sound.play()
                 self.laser_sound.fadeout(250)
-                
         elif event.key == pygame.K_q:
             self.running = False
             pygame.quit()
             sys.exit()
-    
-    
-
+            
 if __name__ == '__main__':
     ai = AlienInvasion()
     ai.run_game()
