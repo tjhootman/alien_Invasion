@@ -3,6 +3,7 @@ import pygame
 from settings import Settings
 from ship import Ship
 from arsenal import Arsenal
+from alien import Alien
 
 class AlienInvasion:
     """Class to manage game assets and behavior."""
@@ -35,8 +36,10 @@ class AlienInvasion:
         # set the volume of the laser sound
         self.laser_sound.set_volume(0.7)
 
-        # create the ship and its aresnal of bullets
+        # create the ship and its arsenal of bullets
         self.ship = Ship(self, Arsenal(self))
+        # create the alien
+        self.alien = Alien(self, 1150, 10)
 
     def run_game(self):
         """Start the main game loop."""
@@ -45,6 +48,8 @@ class AlienInvasion:
             self._check_events()
             # update the ship's position
             self.ship.update()
+            # update the alien's position
+            self.alien.update()
             # update the display to show latest changes
             self._update_screen()
             # limit the frame rate of the game
@@ -56,6 +61,8 @@ class AlienInvasion:
         self.screen.blit(self.bg, (0,0))
         # draw the ship
         self.ship.draw()
+        # draw the alien
+        self.alien.draw_alien()
         # make most recent screen draw visible
         pygame.display.flip()
 
