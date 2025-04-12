@@ -18,29 +18,40 @@ class AlienFleet:
 
     def create_fleet(self):
         alien_h = self.settings.alien_h
-        screen_h = self.game.settings.screen_h
+        alien_w = self.settings.alien_w
+        screen_h = self.settings.screen_h
+        screen_w = self.settings.screen_w
 
-        fleet_h = self.calculate_fleet_size(alien_h, screen_h)
+        fleet_h, fleet_w = self.calculate_fleet_size(alien_h, screen_h, alien_w, screen_w)
 
-        # half_screen = self.settings.screen_h
+        half_screen = self.settings.screen_w // 2
         fleet_vertical_space = fleet_h * alien_h
+        fleet_horizontal_space = fleet_w * alien_w
         y_offset = int((screen_h - fleet_vertical_space) // 2)
+        x_offset = int((half_screen + fleet_horizontal_space) // 2)
+        for row in range(fleet_w):
+            for col in range(fleet_h):
+                current_y = alien_h * col + y_offset
+                current_x = alien_w * row + x_offset
+                if col % 2 == 0 or row % 2 == 0:
+                    continue
+                self._create_alien(current_x, current_y)
 
-        for col in range(fleet_h):
-            current_y = alien_h * col + y_offset
-            if col % 2 == 0:
-                continue
-            self._create_alien(1150, current_y)
-
-    def calculate_fleet_size(self, alien_h, screen_h):
+    def calculate_fleet_size(self, alien_h, screen_h, alien_w, screen_w):
         fleet_h = (screen_h // alien_h)
+        fleet_w = ((screen_w / 2) // alien_w)
 
         if fleet_h % 2 == 0:
             fleet_h -= 1
         else:
             fleet_h -= 2
+        
+        if fleet_w % 2 == 0:
+            fleet_w -= 2
+        else:
+            fleet_w -= 1
 
-        return fleet_h
+        return int(fleet_h), int(fleet_w)
     
     def _create_alien(self, current_x:int, current_y:int):
         new_alien = Alien(self, current_x, current_y)
