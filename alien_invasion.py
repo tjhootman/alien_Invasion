@@ -50,8 +50,8 @@ class AlienInvasion:
             self._check_events()
             # update the ship's position
             self.ship.update()
-            # update the alien's position
-            # self.alien.update()
+            # update the fleet's position
+            self.alien_fleet.update_fleet()
             # update the display to show latest changes
             self._update_screen()
             # limit the frame rate of the game
