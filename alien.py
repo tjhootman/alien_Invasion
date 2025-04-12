@@ -3,12 +3,12 @@ from pygame.sprite import Sprite
 from typing import TYPE_CHECKING
 
 if TYPE_CHECKING:
-    from alien_invasion import AlienInvasion
+    from alien_fleet import AlienFleet
 
 class Alien(Sprite):
     """A class to manage aliens."""
 
-    def __init__(self, game: 'AlienInvasion', x: float, y: float):
+    def __init__(self, fleet: 'AlienFleet', x: float, y: float):
         """Create a alien object and set it's screen position.
 
         Args:
@@ -17,9 +17,9 @@ class Alien(Sprite):
         """
         super().__init__()
 
-        self.screen = game.screen
-        self.boundaries = game.screen.get_rect()
-        self.settings = game.settings
+        self.screen = fleet.game.screen
+        self.boundaries = fleet.game.screen.get_rect()
+        self.settings = fleet.game.settings
 
         # load the alien image, scale and rotate it.
         self.image = pygame.image.load(self.settings.alien_file)
