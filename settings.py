@@ -13,6 +13,7 @@ class Settings:
         self.ship_h = 60
         self.ship_rotate = -90
         self.ship_speed = 5
+        self.staring_ship_count = 3
 
         self.bullet_file = Path.cwd() / 'Assets' / 'images' / 'laserGreen.png'
         self.laser_sound = Path.cwd() / 'Assets' / 'sound' / 'laser.mp3'
