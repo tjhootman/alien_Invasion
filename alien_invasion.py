@@ -87,6 +87,11 @@ class AlienInvasion:
             self._reset_level()
 
     def _check_game_status(self):
+        """Checks the game status and performs actions based on the number of 
+        ships left. If there are still ships remaining, it decrements the ship 
+        count, resets the game level, and pauses briefly. If no ships are left, 
+        it sets the game to inactive.
+        """
         if self.game_stats.ships_left > 0:
             self.game_stats.ships_left -= 1
             self._reset_level()
@@ -95,6 +100,9 @@ class AlienInvasion:
             self.game_active = False
         
     def _reset_level(self):
+        """Resets the game level by clearing existing projectiles and aliens,
+        and then creates a new alien fleet.
+        """
         self.ship.arsenal.arsenal.empty()
         self.alien_fleet.fleet.empty()
         self.alien_fleet.create_fleet()

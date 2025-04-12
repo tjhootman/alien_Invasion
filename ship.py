@@ -84,6 +84,16 @@ class Ship:
         return self.arsenal.fire_bullet()
 
     def check_collisions(self, other_group):
+        """Checks for collisions between the calling sprite group and another 
+        sprite group. If a collision occurs, the calling sprite is recentered.
+
+        Args:
+            other_group: A pygame.sprite.Group object to check for collisions with.
+
+        Returns:
+            bool: True if a collision occurs between any sprite in the calling group and
+        any sprite in the 'other_group', False otherwise.
+        """
         if pygame.sprite.spritecollideany(self, other_group):
             self._center_ship()
             return True

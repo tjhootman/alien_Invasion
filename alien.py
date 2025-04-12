@@ -45,7 +45,19 @@ class Alien(Sprite):
         self.rect.x = self.x
 
     def check_edges(self):
-        return (self.rect.bottom >= self.boundaries.bottom or self.rect.top <= self.boundaries.top)
+        """Checks if the sprite's top or bottom edge has gone beyond the defined 
+        boundaries.
+
+        Returns:
+            bool: True if the bottom edge of the sprite's rectangle is greater 
+            than or equal to the bottom boundary, or if the top edge of the 
+            sprite's rectangle is less than or equal to the top boundary. 
+            False otherwise.
+        """
+        return (
+            self.rect.bottom >= self.boundaries.bottom 
+            or self.rect.top <= self.boundaries.top
+            )
 
     def draw_alien(self):
         """Draw the alien to the screen."""
