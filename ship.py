@@ -31,19 +31,26 @@ class Ship:
             )
         self.image = pygame.transform.rotate(self.image, self.settings.ship_rotate)
 
-        # get the rectangular area of the ship image and set it's inital position
+        # get the rectangular area of the ship image
         self.rect = self.image.get_rect()
+
+        ## set ship's initial position
         self.rect.midleft = self.boundaries.midleft
+
+        # set ship's initial position
+        self._center_ship()
 
         # movement flags to track if ship is moving up or down
         self.moving_down = False
         self.moving_up = False
 
-        # store the ship's vertical position
-        self.y = float(self.rect.y)
-
         # store a reference to the ship's arsenal
         self.arsenal = arsenal
+
+    def _center_ship(self):
+        """Set ship's inital postion"""
+        self.rect.midleft = self.boundaries.midleft
+        self.y = float(self.rect.y)
 
     def update(self):
         """Update the ship's position and the arsenal of bullets."""
@@ -75,3 +82,9 @@ class Ship:
             limit was reached).
         """
         return self.arsenal.fire_bullet()
+
+    def check_collisions(self, other_group):
+        if pygame.sprite.spritecollideany(self, other_group):
+            self._center_ship()
+            return True
+        return False
