@@ -28,6 +28,8 @@ class AlienFleet:
 
         for col in range(fleet_h):
             current_y = alien_h * col + y_offset
+            if col % 2 == 0:
+                continue
             self._create_alien(1150, current_y)
 
     def calculate_fleet_size(self, alien_h, screen_h):
