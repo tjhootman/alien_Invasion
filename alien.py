@@ -27,7 +27,7 @@ class Alien(Sprite):
         self.image = pygame.transform.scale(self.image, 
             (self.settings.alien_w, self.settings.alien_h)
             )
-        self.image = pygame.transform.rotate(self.image, self.settings.bullet_rotate)
+        self.image = pygame.transform.rotate(self.image, self.settings.alien_rotate)
 
         # create the aliens rect object and position it.
         self.rect = self.image.get_rect()
