@@ -7,10 +7,10 @@ if TYPE_CHECKING:
 
 class Button:
 
-    def __init__(self, gane: 'AlienInvasion', msg):
+    def __init__(self, game: 'AlienInvasion', msg):
         self.game = game
         self.screen = game.screen
-        self.boundaries = gane.screen.get_rect()
+        self.boundaries = game.screen.get_rect()
         self.settings = game.settings
         self.font = pygame.font.Font(self.settings.font_file,
             self.settings.button_font_size
