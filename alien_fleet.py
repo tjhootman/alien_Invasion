@@ -1,5 +1,6 @@
 import pygame
 from typing import TYPE_CHECKING
+import random
 from alien import Alien
 
 if TYPE_CHECKING:
@@ -32,9 +33,12 @@ class AlienFleet:
         fleet_h, fleet_w = self.calculate_fleet_size(alien_h, screen_h, alien_w, screen_w)
         y_offset, x_offset = self.calculate_offsets(alien_h, alien_w, screen_h, fleet_h, fleet_w)
         
-        self._create_rectangle_fleet(alien_h, alien_w, fleet_h, fleet_w, y_offset, x_offset)
+        self._create_random_fleet(alien_h, alien_w, fleet_h, fleet_w, y_offset, x_offset)
 
-    def _create_rectangle_fleet(self, alien_h, alien_w, fleet_h, fleet_w, y_offset, x_offset):
+ 
+
+
+    def _create_random_fleet(self, alien_h, alien_w, fleet_h, fleet_w, y_offset, x_offset):
         """Creates a rectangular formation of aliens.
 
         Args:
@@ -47,11 +51,12 @@ class AlienFleet:
         """
         for row in range(fleet_w):
             for col in range(fleet_h):
-                current_y = alien_h * col + y_offset
-                current_x = alien_w * row + x_offset
-                if col % 2 == 0 or row % 2 == 0:
-                    continue
-                self._create_alien(current_x, current_y)
+                if random.random() < 0.8: # 0.0-1.0 controls density
+                    current_y = alien_h * col + y_offset
+                    current_x = alien_w * row + x_offset
+                    if col % 2 == 0 or row % 2 == 0:
+                        continue
+                    self._create_alien(current_x, current_y)
 
     def calculate_offsets(self, alien_h, alien_w, screen_h, fleet_h, fleet_w):
         """Calculates the vertical and horizontal offsets to center the fleet.
