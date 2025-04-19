@@ -97,6 +97,7 @@ class AlienInvasion:
             # update game stats level
             self.game_stats.update_level()
             # update HUD view
+            self.HUD.update_level()
 
     def _check_game_status(self):
         """Checks the game status and performs actions based on the number of 
