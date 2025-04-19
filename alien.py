@@ -1,9 +1,13 @@
 import pygame
+import random
+from pathlib import Path
 from pygame.sprite import Sprite
 from typing import TYPE_CHECKING
 
 if TYPE_CHECKING:
     from alien_fleet import AlienFleet
+    from pathlib import Path
+    import random
 
 class Alien(Sprite):
     """A class to manage aliens."""
@@ -23,7 +27,9 @@ class Alien(Sprite):
         self.settings = fleet.game.settings
 
         # load the alien image, scale and rotate it.
-        self.image = pygame.image.load(self.settings.alien_file)
+        self.alien_images = self.settings.alien_images
+        self.image = pygame.image.load(Path.cwd() / 'Assets' / 'images' / (random.choice(self.alien_images)))
+        # self.image = pygame.image.load(self.settings.alien_file)
         self.image = pygame.transform.scale(self.image, 
             (self.settings.alien_w, self.settings.alien_h)
             )

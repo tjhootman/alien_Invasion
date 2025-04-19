@@ -10,6 +10,7 @@ class Settings:
         self.difficulty_scale = 1.1
         self.scores_file = Path.cwd() / 'Assets' / 'file' / 'scores.json'
 
+
         self.ship_file = Path.cwd() / 'Assets' / 'images' / 'ship2(no bg).png'
         self.ship_w = 40
         self.ship_h = 60
@@ -22,7 +23,7 @@ class Settings:
         self.bullet_rotate = -90
         
 
-        self.alien_file = Path.cwd() / 'Assets' / 'images' / 'enemy_4.png'
+        self.alien_images = ['enemy_1.png', 'enemy_2.png', 'enemy_3.png']
         self.alien_w = 40
         self.alien_h = 40
         self.alien_rotate = -90
