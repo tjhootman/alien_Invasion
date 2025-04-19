@@ -47,6 +47,12 @@ class Ship:
         # store a reference to the ship's arsenal
         self.arsenal = arsenal
 
+        # speed factor
+        self.speed_factor = 1
+
+        # flag for spread shot
+        self.spread_shot_active = False
+
     def _center_ship(self):
         """Set ship's inital postion"""
         self.rect.midleft = self.boundaries.midleft

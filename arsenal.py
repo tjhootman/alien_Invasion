@@ -54,3 +54,11 @@ class Arsenal:
             self.arsenal.add(new_bullet)
             return True
         return False
+    
+    def fire_spread_shot(self):
+        bullet1 = Bullet(self.game)
+        bullet2 = Bullet(self.game, angle = -45)
+        bullet3 = Bullet(self.game, angle = 45)
+        self.bullets.add(bullet1)
+        self.bullets.add(bullet2)
+        self.bullets.add(bullet3)

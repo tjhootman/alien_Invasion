@@ -2,7 +2,10 @@ from pathlib import Path
 class Settings:
     
     def __init__(self):
+        # name settings
         self.name: str = 'Alien Invasion'
+
+        # screen settings
         self.screen_w = 1200
         self.screen_h = 800
         self.FPS = 60
@@ -10,25 +13,37 @@ class Settings:
         self.difficulty_scale = 1.1
         self.scores_file = Path.cwd() / 'Assets' / 'file' / 'scores.json'
 
+        # ship settings
         self.ship_file = Path.cwd() / 'Assets' / 'images' / 'ship2(no bg).png'
         self.ship_w = 40
         self.ship_h = 60
         self.ship_rotate = -90
         
-
+        # bullet settings
         self.bullet_file = Path.cwd() / 'Assets' / 'images' / 'laserGreen.png'
         self.laser_sound = Path.cwd() / 'Assets' / 'sound' / 'laser.mp3'
         self.impact_sound = Path.cwd() / 'Assets' / 'sound' / 'impactSound.mp3'
         self.bullet_rotate = -90
         
-
+        # alien settings
         self.alien_file = Path.cwd() / 'Assets' / 'images' / 'enemy_4.png'
         self.alien_w = 40
         self.alien_h = 40
         self.alien_rotate = -90
         self.fleet_direction = 1
-        
 
+        # power-up settings
+        self.power_up_file = Path.cwd() / 'Assets' / 'images' / 'Orbz' / 'Flameless.png'
+        self.power_up_w = 40
+        self.power_up_h = 40
+        self.max_power_power_ups = 3
+        self.power_up_drop_speed = 2
+        self.power_up_types = ['speed_boost', 'extra_life', 'spread_shot' ]
+        self.speed_boost_factor = 1.5
+        self.speed_boost_duration = 5000
+        self.spread_shot_duration = 7000
+        
+        # HUD settings
         self.button_w = 200
         self.button_h = 50
         self.button_color = (0,135,50)

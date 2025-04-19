@@ -160,6 +160,12 @@ class AlienInvasion:
                 self._check_keyup_events(event)
             elif event.type == pygame.MOUSEBUTTONDOWN:
                 self._check_button_clicked()
+            elif event.type == pygame.USEREVENT + 1 and self.power_up_active == 'speed_boost':
+                self.ship.speed_factor /= self.settings.speed_boost_factor
+                self.power_up_active = None
+            elif event.type == pygame.USEREVENT + 3 and self.power_up_active == 'spread_shot':
+                self.ship.spread_shot_active = False
+                self.power_up_active = None
 
     def _check_button_clicked(self):
         mouse_pos = pygame.mouse.get_pos()
@@ -190,7 +196,20 @@ class AlienInvasion:
             self.game_stats.save_scores()
             pygame.quit()
             sys.exit()
-            
+
+    def _apply_power_up(self, power_up_type):
+        if power_up_type == 'speed_boost':
+            self.ship.speed_factor *= self.settings.speed_boost_factor
+            pygame.time.set_timer(pygame.USEREVENT + 1, self.settings.speed_boost_duration) # look at this
+            self.power_up_active = 'speed_boost'
+        elif power_up_type == 'extra_life':
+            self.game_stats.ships_left += 1
+            self.sb.prep_ships() # need to look at this
+        elif power_up_type == 'spread_shot':
+            self.ship.spread_shot_active = True
+            pygame.time.set_timer(pygame.USEREVENT + 3, self.settings.spread_shot_duration) # look at this
+            self.power_up_active = 'spread_shot'
+
 if __name__ == '__main__':
     ai = AlienInvasion()
     ai.run_game()

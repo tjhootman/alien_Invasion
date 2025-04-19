@@ -1,14 +1,16 @@
 import pygame
+from power_ups import PowerUps
 from typing import TYPE_CHECKING
 from alien import Alien
 
 if TYPE_CHECKING:
     from alien_invasion import AlienInvasion
+    from power_ups import PowerUp
 
 class AlienFleet:
     """Manages the creation, movement and destruction of the alien fleet.
     """
-    def __init__(self, game: 'AlienInvasion'):
+    def __init__(self, game: 'AlienInvasion', power_ups: 'PowerUps'):
         """Initializes the AlienFleet.
 
         Args:
@@ -19,6 +21,7 @@ class AlienFleet:
         self.fleet = pygame.sprite.Group()
         self.fleet_direction = self.settings.fleet_direction
         self.fleet_drop_speed = self.settings.fleet_drop_speed
+        self.power_ups = power_ups
 
         self.create_fleet()
 
