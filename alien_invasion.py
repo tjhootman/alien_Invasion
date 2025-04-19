@@ -14,6 +14,7 @@ class AlienInvasion:
         """Initialize the game, and create game resources."""
         pygame.init()
         self.settings = Settings()
+        self.settings.initialize_dynamic_settings()
         self.game_stats = GameStats(self.settings.staring_ship_count)
 
         # set the display window size
@@ -114,8 +115,6 @@ class AlienInvasion:
         # set up dynamic settings
         # reset game stats
         # update HUD scores
-        # reset level
-        # recenter the ship
         self._reset_level()
         self.ship._center_ship()
         self.game_active = True
@@ -144,7 +143,7 @@ class AlienInvasion:
                 self.running = False
                 pygame.quit()
                 sys.exit()
-            elif event.type == pygame.KEYDOWN:
+            elif event.type == pygame.KEYDOWN and self.game_active == True:
                 self._check_keydown_events(event)
             elif event.type == pygame.KEYUP:
                 self._check_keyup_events(event)
