@@ -38,6 +38,7 @@ class AlienInvasion:
 
         # initialize the mixer module for sound
         pygame.mixer.init()
+        
         # load the laser sound effect
         self.laser_sound = pygame.mixer.Sound(self.settings.laser_sound)
         # set the volume of the laser sound
@@ -58,6 +59,13 @@ class AlienInvasion:
 
     def run_game(self):
         """Start the main game loop."""
+        pygame.mixer.init()
+        # load the background music
+        pygame.mixer.music.load(self.settings.bg_music)
+        # set the volume of the background music
+        pygame.mixer.music.set_volume(0.5)
+        # play background music
+        pygame.mixer.music.play(-1)
         while self.running:
             # check for user input and events
             self._check_events()
@@ -72,6 +80,8 @@ class AlienInvasion:
             self._update_screen()
             # limit the frame rate of the game
             self.clock.tick(self.settings.FPS)
+            # Initialize the mixer
+            
 
     def _check_collisions(self):
         # check collisions for ship

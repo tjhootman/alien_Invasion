@@ -9,6 +9,7 @@ class Settings:
         self.bg_file = Path.cwd() / 'Assets' / 'images' / 'Starbasesnow.png'
         self.difficulty_scale = 1.1
         self.scores_file = Path.cwd() / 'Assets' / 'file' / 'scores.json'
+        self.bg_music = Path.cwd() /'Assets' / 'sound' / 'Fludd.mp3'
 
 
         self.ship_file = Path.cwd() / 'Assets' / 'images' / 'ship2(no bg).png'
@@ -22,6 +23,14 @@ class Settings:
         self.impact_sound = Path.cwd() / 'Assets' / 'sound' / 'impactSound.mp3'
         self.bullet_rotate = -90
         
+
+        # Power-up settings
+        self.max_power_ups = 3
+        self.power_up_drop_speed = 1.5
+        self.power_up_types = ['speed_boost', 'extra_life', 'spread_shot']
+        self.speed_boost_duration = 5000
+        self.speed_boost_factor = 1.5
+        self.spread_shot_duration = 7000
 
         self.alien_images = ['enemy_1.png', 'enemy_2.png', 'enemy_3.png']
         self.alien_w = 40
@@ -43,7 +52,7 @@ class Settings:
         self.staring_ship_count = 3
 
         self.bullet_speed = 7
-        self.bullet_amount = 6
+        self.bullet_amount = 7
         self.bullet_w = 25
         self.bullet_h = 80
 
@@ -56,3 +65,6 @@ class Settings:
         self.bullet_speed *= self.difficulty_scale
         self.fleet_speed *= self.difficulty_scale
         self.fleet_drop_speed *= self.difficulty_scale
+
+    def increase_speed(self):
+        self.ship_speed *= 2
