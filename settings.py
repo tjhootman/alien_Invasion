@@ -9,7 +9,9 @@ class Settings:
         self.bg_file = Path.cwd() / 'Assets' / 'images' / 'Starbasesnow.png'
         self.difficulty_scale = 1.1
         self.scores_file = Path.cwd() / 'Assets' / 'file' / 'scores.json'
-        self.bg_music = Path.cwd() /'Assets' / 'sound' / 'Fludd.mp3'
+        self.title_music = Path.cwd() /'Assets' / 'sound' / 'Afterburner.ogg'
+        self.bg_music = Path.cwd() / 'Assets' / 'sound' / 'through space.ogg'
+        self.title_image = Path.cwd() /'Assets' / 'images' / 'starfall_title1.png'
 
 
         self.ship_file = Path.cwd() / 'Assets' / 'images' / 'ship2(no bg).png'
@@ -31,6 +33,7 @@ class Settings:
         self.speed_boost_duration = 5000
         self.speed_boost_factor = 1.5
         self.spread_shot_duration = 7000
+        self.power_up_image = Path.cwd() / 'Assets' / 'images' / 'Fmless.png'
 
         self.alien_images = ['enemy_1.png', 'enemy_2.png', 'enemy_3.png']
         self.alien_w = 40

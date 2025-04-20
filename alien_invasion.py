@@ -24,6 +24,12 @@ class AlienInvasion:
         # set the title of the game window
         pygame.display.set_caption(self.settings.name)
 
+        # load the title screen image and scale it to the screen size
+        self.title_screen = pygame.image.load(self.settings.title_image)
+        self.title_screen = pygame.transform.scale(self.title_screen,
+            (self.settings.screen_h, self.settings.screen_h)
+            )
+        
         # load the background image and scale it to the screen size
         self.bg = pygame.image.load(self.settings.bg_file)
         self.bg = pygame.transform.scale(self.bg,
@@ -61,7 +67,7 @@ class AlienInvasion:
         """Start the main game loop."""
         pygame.mixer.init()
         # load the background music
-        pygame.mixer.music.load(self.settings.bg_music)
+        pygame.mixer.music.load(self.settings.title_music)
         # set the volume of the background music
         pygame.mixer.music.set_volume(0.5)
         # play background music
@@ -82,13 +88,10 @@ class AlienInvasion:
             self.clock.tick(self.settings.FPS)
             # Initialize the mixer
             
-
     def _check_collisions(self):
         # check collisions for ship
         if self.ship.check_collisions(self.alien_fleet.fleet):
            self._check_game_status()
-           
-           # subtract one life if possible
 
        # check collisions for aliens and bottom of screen
         if self.alien_fleet.check_fleet_bottom():
@@ -150,6 +153,7 @@ class AlienInvasion:
         self.HUD.draw()
 
         if not self.game_active:
+            self.screen.blit(self.title_screen, (200,0)) # need to set this dynamically
             self.play_button.draw()
             pygame.mouse.set_visible(True)
 
@@ -175,6 +179,7 @@ class AlienInvasion:
         mouse_pos = pygame.mouse.get_pos()
         if self.play_button.check_clicked(mouse_pos):
             self.restart_game()
+
     
     def _check_keyup_events(self, event):
         """Respond to key releases."""
