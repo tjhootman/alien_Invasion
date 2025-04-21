@@ -16,7 +16,6 @@ class Alien(Sprite):
             This provides access to game resources like settings.
         """
         super().__init__()
-
         self.fleet = fleet
         self.screen = fleet.game.screen
         self.boundaries = fleet.game.screen.get_rect()
@@ -28,20 +27,23 @@ class Alien(Sprite):
             (self.settings.alien_w, self.settings.alien_h)
             )
         self.image = pygame.transform.rotate(self.image, self.settings.alien_rotate)
-
-        # create the aliens rect object and position it.
         self.rect = self.image.get_rect()
+        
+        # start each new alien at the specified position
         self.rect.x = x
         self.rect.y = y
+
+        # store the alien's exact horizontal and vertical position
         self.x = float(self.rect.x)
         self.y = float(self.rect.y)
 
     def update(self):
         """Update the alien's vertical position."""
         temp_speed = self.settings.fleet_speed
-
+        # move the alien based on the fleet's speed and direction
         self.y += temp_speed * self.fleet.fleet_direction
         self.rect.y = self.y
+        # keep the horzontal position constant
         self.rect.x = self.x
 
     def check_edges(self):

@@ -29,9 +29,12 @@ class AlienFleet:
         screen_h = self.settings.screen_h
         screen_w = self.settings.screen_w
 
+        # calculate the ideal size of the fleet
         fleet_h, fleet_w = self.calculate_fleet_size(alien_h, screen_h, alien_w, screen_w)
+        # calculate the offsets to center of the fleet
         y_offset, x_offset = self.calculate_offsets(alien_h, alien_w, screen_h, fleet_h, fleet_w)
         
+        # create the rectangular formation of aliens
         self._create_rectangle_fleet(alien_h, alien_w, fleet_h, fleet_w, y_offset, x_offset)
 
     def _create_rectangle_fleet(self, alien_h, alien_w, fleet_h, fleet_w, y_offset, x_offset):
@@ -51,6 +54,7 @@ class AlienFleet:
                 current_x = alien_w * row + x_offset
                 if col % 2 == 0 or row % 2 == 0:
                     continue
+                # create alien at the calculated position
                 self._create_alien(current_x, current_y)
 
     def calculate_offsets(self, alien_h, alien_w, screen_h, fleet_h, fleet_w):
@@ -66,10 +70,13 @@ class AlienFleet:
         Returns:
             tuple: A tuple containing the vertical (y) and horizontal (x) offsets.
         """
+        # calculate vertical offset to center the fleet vertically
         half_screen = self.settings.screen_w // 2
         fleet_vertical_space = fleet_h * alien_h
-        fleet_horizontal_space = fleet_w * alien_w
         y_offset = int((screen_h - fleet_vertical_space) // 2)
+
+        # calculate horizontal offset to center the fleet horizontally
+        fleet_horizontal_space = fleet_w * alien_w
         x_offset = int((half_screen + fleet_horizontal_space) // 2)
         return y_offset,x_offset
 
@@ -86,7 +93,9 @@ class AlienFleet:
         Returns:
             tuple: A tuple containing the calculated fleet height and width.
         """
+        # determine the number of rows of aliens that can fit vertically
         fleet_h = (screen_h // alien_h)
+        # determine the number of aliens that can fit horizontally, leaving some margin
         fleet_w = ((screen_w / 2) // alien_w)
 
         if fleet_h % 2 == 0:

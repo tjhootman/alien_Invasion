@@ -19,21 +19,25 @@ class Bullet(Sprite):
         self.screen = game.screen
         self.settings = game.settings
 
-        # load the bullet image, scale and rotate it.
+        # load the bullet image, scale and rotate it
         self.image = pygame.image.load(self.settings.bullet_file)
         self.image = pygame.transform.scale(self.image, 
             (self.settings.bullet_w, self.settings.bullet_h)
             )
         self.image = pygame.transform.rotate(self.image, self.settings.bullet_rotate)
 
-        # create the bullets rect object and position it at the ships middle-right.
+        # create the bullets rect object and position it at the ships middle-right
         self.rect = self.image.get_rect()
         self.rect.midright = game.ship.rect.midright
+
+        # store the bullet's exact horizontal position as a float for precise movement
         self.x = float(self.rect.x)
 
     def update(self):
         """Move the bullet to the right of the screen."""
+        # update the decimal position of the bullet
         self.x += self.settings.bullet_speed
+        #update the rect position based on the decimal position
         self.rect.x = self.x
 
     def draw_bullet(self):

@@ -50,6 +50,7 @@ class Ship:
     def _center_ship(self):
         """Set ship's inital postion"""
         self.rect.midleft = self.boundaries.midleft
+        # store the ship's exact vertical position as a float for precise movement
         self.y = float(self.rect.y)
 
     def update(self):
@@ -62,8 +63,10 @@ class Ship:
     def _update_ship_movement(self):
         """Update the ship's vertical position."""
         temp_speed = self.settings.ship_speed
+        # move the ship down if the moving_down flag is set and within screen boundaries
         if self.moving_down and self.rect.bottom < self.boundaries.bottom:
             self.y += temp_speed
+        # move the ship up if the moving_up flag is set and within screen boundaries
         if self.moving_up and self.rect.top > self.boundaries.top:
             self.y -= temp_speed
 

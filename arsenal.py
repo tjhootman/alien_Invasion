@@ -9,6 +9,7 @@ class Arsenal:
     """A class to manage the arsenal of bullets fired by the ship."""
 
     def __init__(self, game: 'AlienInvasion'):
+        """"""
         """Initialize the arsenal and create an empty group to store bullets.
 
         Args:
